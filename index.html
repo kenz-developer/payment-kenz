@@ -73,7 +73,7 @@
             top: 20px;
             width: 100%;
             text-align: center;
-            font-size: 25px;
+            font-size: 18px;
             color: var(--text-color);
             text-shadow: 0 0 10px var(--glow-color);
         }
@@ -133,20 +133,25 @@
             <p>Nama penerima: <strong>Kenz Market</strong></p>
             <p>DNID: <strong id="dnid"></strong></p>
             <p>Waktu Kadaluarsa: <strong id="expired-time"></strong></p>
-            <a href="qris.jpg" download="qris-pembayaran.jpg" class="download-link" id="download-link">💾 Unduh QRIS</a>
+            <a href="qris2.jpg" download="qris-pembayaran.jpg" class="download-link" id="download-link">💾 Unduh QRIS</a>
             <div class="footer">© 2025 Kenz Market. Semua hak dilindungi.</div>
+        </div>
+
+        <!-- Tombol Buat QRIS Lagi Setelah Kadaluarsa -->
+        <div id="create-again-section" class="hide">
+            <button class="download-link" id="create-again-button">Buat QRIS Lagi</button>
         </div>
     </div>
 
     <script>
         // ID Transaksi Acak
         function generateTransactionID() {
-            return 'ID' + Math.random().toString(36).substr(2, 10).toUpperCase();
+            return 'TRX-' + Math.random().toString(36).substr(2, 10).toUpperCase();
         }
 
         // DNID (Digital National ID) Acak
         function generateDNID() {
-            return 'DN' + Math.random().toString(36).substr(2, 10).toUpperCase();
+            return 'DN-' + Math.random().toString(36).substr(2, 10).toUpperCase();
         }
 
         // Jam Digital
@@ -180,12 +185,14 @@
         const dnisElement = document.getElementById('dnid');
         const expiredTimeElement = document.getElementById('expired-time');
         const instructionText = document.getElementById('instruction-text');
+        const createAgainButton = document.getElementById('create-again-button');
+        const createAgainSection = document.getElementById('create-again-section');
         
         let expirationTime;
         let expirationTimer;
 
         // Fungsi untuk membuat QRIS Baru
-        createQrisButton.addEventListener('click', function() {
+        function createQris() {
             const transactionID = generateTransactionID();
             const dnid = generateDNID();
             
@@ -201,7 +208,7 @@
             expirationTime = new Date().getTime() + 1 * 60 * 1000; // 1 menit
             updateExpiration();
             expirationTimer = setInterval(updateExpiration, 1000);
-        });
+        }
 
         // Fungsi untuk menghitung sisa waktu kadaluarsa QRIS
         function updateExpiration() {
@@ -212,6 +219,7 @@
                 expiredTimeElement.textContent = "QRIS ini telah kadaluarsa.";
                 qrisImage.classList.add('hide');
                 downloadLink.classList.add('hide');
+                createAgainSection.classList.remove('hide');
                 clearInterval(expirationTimer);
             } else {
                 const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
@@ -219,6 +227,16 @@
                 expiredTimeElement.textContent = `${minutes} menit ${seconds} detik`;
             }
         }
+
+        // Event Listener untuk tombol buat QRIS
+        createQrisButton.addEventListener('click', createQris);
+
+        // Event Listener untuk tombol buat QRIS lagi
+        createAgainButton.addEventListener('click', function() {
+            // Sembunyikan tombol "Buat QRIS Lagi" dan buat QRIS baru
+            createAgainSection.classList.add('hide');
+            createQris();
+        });
     </script>
 </body>
 </html>
