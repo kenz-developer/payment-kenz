@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #0d0d0d;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 400px;
+    margin: auto;
+    background: #1c1c1c;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgb(0,179,250);
+}
+
+h2 {
+    font-size: 22px;
+    color: #3b82f6;
+}
+
+p {
+    font-size: 14px;
+    color: #bdbdbd;
+    margin-bottom: 20px;
+}
+
+.payment-method, .qr-section {
+    background: #222;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.payment-method h3, .qr-section h3 {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.notice {
+    background: #ff9800;
+    padding: 10px;
+    border-radius: 5px;
+    color: #000;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.payment-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid rgb(0,245,250);
+    background: #333;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.payment-option i {
+    color: #fff;
+}
+
+button {
+    background: #3b82f6;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #2563eb;
+}
+
+/* Gaya untuk tombol QR */
+.qr-button {
+    background: rgb(0,132,250);
+    padding: 12px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 10px;
+    border-left: 5px solid rgb(0,245,250); /* Garis pinggir kiri */
+}
